@@ -1,0 +1,64 @@
+name: chocolatine
+
+on:
+  push:
+    branches-ignore:
+      - "!ga-ignore-*"
+  pull_request:
+    branches:
+      - "!ga-ignore-*"
+
+env:
+  MIRROR_URL: ""
+  EXECUTABLE: ""
+
+jobs:
+  check_coding_style:
+    runs-on: ubuntu-latest
+    container: ghcr.io/epitech/coding-style-checker:latest
+    needs: []
+    steps:
+      - name: check coding style
+      - run: check.sh $(pwd) $(pwd)
+      - uses: actions/checkout@v3
+      - run: |
+          ls -la ./
+          rm -rf ./.??*
+      - name: display errors
+        if: ${{ job.status == 'failure' }}
+        uses: khan/pull-request-annotations@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+  check_program_compilation:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    needs: [check_coding_style]
+    timeout-minutes: 2
+    steps:
+      - name: Make Executable
+      - run: make
+      - name: Clean
+      - run: make clean
+      - name: check executables
+      - run: |
+
+  run_tests:
+    runs-on: ubuntu-latest
+    container: epitechcontest/epitest-docker
+    needs: [check_program_compilation]
+    timeout-minutes: 2
+    steps:
+      - name: Run tests
+      - run: make tests_run
+  push_to_mirror:
+      runs-on: ubuntu-latest
+      needs: [run_tests]
+      if: github.event_name == 'push'
+      steps:
+        - name: checkout
+        - uses: actions/checkout@v2
+        - name: Mirror repository
+        - uses: pixta-dev/repository-mirroring-action@v2.0.0
+          with:
+            mirror_url: ${{ env.MIRROR_URL }}
+            ssh_key: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
