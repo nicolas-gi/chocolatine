@@ -9,8 +9,8 @@ on:
       - "!ga-ignore-*"
 
 env:
-  MIRROR_URL: ""
-  EXECUTABLE: ""
+  MIRROR_URL: "secrets.EXECUTABLES"
+  EXECUTABLE: "secrets.MIRROR_URL"
 
 jobs:
   check_coding_style:
