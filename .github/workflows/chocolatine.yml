@@ -26,11 +26,7 @@ jobs:
         run: |
           ls -la ./
           rm -rf ./.??*
-      # - name: display errors
-      #   if: ${{ job.status == 'failure' }}
-      #   uses: khan/pull-request-annotations@v1
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+
   check_program_compilation:
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker
@@ -62,5 +58,5 @@ jobs:
         - name: Mirror repository
           uses: pixta-dev/repository-mirroring-action@v1
           with:
-            mirror_url: ${{ env.MIRROR_URL }}
+            target_repo_url: git@github.com:nicolas-gi/chocolatine.git
             ssh_key: ${{ secrets.GIT_SSH_PRIVATE_KEY }}
