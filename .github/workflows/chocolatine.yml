@@ -9,8 +9,8 @@ on:
       - "!ga-ignore-*"
 
 env:
-  MIRROR_URL: "secrets.EXECUTABLES"
-  EXECUTABLE: "secrets.MIRROR_URL"
+  MIRROR_URL: "secrets.MIRROR_URL"
+  EXECUTABLE: "secrets.EXECUTABLES"
 
 jobs:
   check_coding_style:
@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: check coding style
         run: check.sh $(pwd) $(pwd)
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         run: |
           ls -la ./
           rm -rf ./.??*
