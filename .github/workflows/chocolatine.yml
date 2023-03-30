@@ -26,11 +26,11 @@ jobs:
         run: |
           ls -la ./
           rm -rf ./.??*
-      - name: display errors
-        if: ${{ job.status == 'failure' }}
-        uses: khan/pull-request-annotations@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: display errors
+      #   if: ${{ job.status == 'failure' }}
+      #   uses: khan/pull-request-annotations@v1
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
   check_program_compilation:
     runs-on: ubuntu-latest
     container: epitechcontent/epitest-docker
