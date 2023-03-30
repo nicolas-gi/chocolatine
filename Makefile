@@ -7,7 +7,7 @@
 
 CC		=	gcc
 
-NAME	=	paint_au_chocolat
+NAME	=	pain_au_chocolat
 
 SRC		=	main.c
 
