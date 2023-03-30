@@ -37,6 +37,7 @@ jobs:
     needs: [check_coding_style]
     timeout-minutes: 2
     steps:
+      - uses: actions/checkout@v3
       - name: Make Executable
         run: make
       - name: Clean
