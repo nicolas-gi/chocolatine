@@ -37,7 +37,7 @@ jobs:
       - name: Make Executable
         run: make
       - name: Clean
-        run: make clean
+        run: make fclean
 
   run_tests:
     runs-on: ubuntu-latest

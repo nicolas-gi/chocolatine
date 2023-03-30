@@ -1,26 +1,33 @@
 ##
-## EPITECH PROJECT, 2022
+## EPITECH PROJECT, 2023
 ## chocolatine
 ## File description:
 ## Makefile
 ##
 
-CC		=	gcc
+CC = gcc
 
-NAME	=	pain_au_chocolat
+NAME = pain_au_chocolat
 
-SRC		=	main.c
+SRC	= main.c
 
-OBJ		=	$(SRC:.c=.o)
+OBJ	= $(SRC:.c=.o)
 
-all:	$(NAME)
-$(NAME):	$(OBJ)
+all : $(NAME)
+$(NAME): $(OBJ)
 	$(CC) -o $(NAME) $(OBJ)
 
-clean:
-	rm -f $(OBJ)
+clean :
+	$(RM) $(OBJ)
 
-tests_run:
+fclean :
+	$(RM) $(NAME)
+	$(RM) pain_au_chocolat-test.gcno
+
+tests_run :
 	$(CC) -o $(NAME) tests/test.c --coverage -lcriterion
 
-.PHONY: all clean tests_run
+re : fclean
+	make all
+
+.PHONY: all clean fclean tests_run re

@@ -9,5 +9,5 @@
 
 int main(void)
 {
-    printf("Pain Au Chocolat 1\n");
+    printf("Pain Au Chocolat \n");
 }
