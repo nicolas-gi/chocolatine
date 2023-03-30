@@ -39,8 +39,6 @@ jobs:
       - run: make
       - name: Clean
       - run: make clean
-      - name: check executables
-      - run: |
 
   run_tests:
     runs-on: ubuntu-latest
