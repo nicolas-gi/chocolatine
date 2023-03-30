@@ -49,6 +49,7 @@ jobs:
     needs: [check_program_compilation]
     timeout-minutes: 2
     steps:
+      - uses: actions/checkout@v3
       - name: Run tests
         run: make tests_run
   push_to_mirror:
