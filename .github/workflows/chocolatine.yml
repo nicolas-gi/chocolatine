@@ -23,10 +23,11 @@ jobs:
       - name: run action
         uses: actions/checkout@v3
       - name: coding style report
-        run: cat coding-style-reports.log | while read line;
-          do new_line=(${line//:/ })
+        run: |
+        cat coding-style-reports.log | while read line; do
+          new_line=(${line//:/ })
           echo "::error file={${new_line}},line={${new_line[1]}},title={${new_line[2]} coding style error}::{${new_line[3]}}"
-          done
+        done
       - name: clean repo
         run: |
           ls -la ./
