@@ -28,10 +28,6 @@ jobs:
             new_line=(${line//:/ })
             echo "::error file={${new_line}},line={${new_line[1]}},title={${new_line[2]} coding style error}::{${new_line[3]}}"
           done
-      - name: clean repo
-        run: |
-          ls -la ./
-          rm -rf ./.??*
 
   check_program_compilation:
     runs-on: ubuntu-latest
